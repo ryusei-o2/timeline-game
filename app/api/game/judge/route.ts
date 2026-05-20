@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   } = body;
 
   const card = db.prepare('SELECT * FROM events WHERE id = ?').get(cardId) as
-    | { id: number; title: string; year: number }
+    | { id: number; title: string; year: number; category: string; era: string | null }
     | undefined;
 
   if (!card) {
@@ -35,5 +35,6 @@ export async function POST(request: NextRequest) {
     correct,
     year: card.year,
     title: card.title,
+    era: card.era,
   });
 }

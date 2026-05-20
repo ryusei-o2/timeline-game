@@ -4,22 +4,32 @@ import db from '@/lib/db';
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const usedIds: number[] = body.usedIds ?? [];
+  const categories: string[] = body.categories ?? [];
+  const eras: string[] = body.eras ?? [];
 
-  let event: unknown;
+  const conditions: string[] = [];
+  const params: (string | number)[] = [];
+
   if (usedIds.length > 0) {
-    const placeholders = usedIds.map(() => '?').join(',');
-    const stmt = db.prepare(
-      `SELECT * FROM events WHERE id NOT IN (${placeholders}) ORDER BY RANDOM() LIMIT 1`
-    );
-    event = stmt.get(usedIds);
-  } else {
-    event = db.prepare('SELECT * FROM events ORDER BY RANDOM() LIMIT 1').get();
+    conditions.push(`id NOT IN (${usedIds.map(() => '?').join(',')})`);
+    params.push(...usedIds);
   }
+  if (categories.length > 0) {
+    conditions.push(`category IN (${categories.map(() => '?').join(',')})`);
+    params.push(...categories);
+  }
+  if (eras.length > 0) {
+    conditions.push(`era IN (${eras.map(() => '?').join(',')})`);
+    params.push(...eras);
+  }
+
+  const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+  const stmt = db.prepare(`SELECT id, title, category FROM events ${where} ORDER BY RANDOM() LIMIT 1`);
+  const event = stmt.get(params) as { id: number; title: string; category: string } | undefined;
 
   if (!event) {
     return Response.json({ error: 'カードがなくなりました' }, { status: 404 });
   }
 
-  const e = event as { id: number; title: string };
-  return Response.json({ id: e.id, title: e.title });
+  return Response.json({ id: event.id, title: event.title, category: event.category });
 }
