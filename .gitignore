@@ -1,5 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# SQLite database
+/data/*.db
+
+# Dev server logs
+dev-server.log
+dev-server-err.log
+
 # dependencies
 /node_modules
 /.pnp
