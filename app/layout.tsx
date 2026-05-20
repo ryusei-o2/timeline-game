@@ -9,7 +9,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "タイムライン",
+  title: "ヒストリカ",
   description: "歴史的な出来事を時系列に並べるカードゲーム",
   other: {
     "google-adsense-account": "ca-pub-9657861927625897",

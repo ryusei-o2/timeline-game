@@ -38,15 +38,12 @@ function SetupScreen({
   const japaneseSelected = selectedCats.includes('日本史');
 
   function toggleCat(cat: string) {
-    setSelectedCats((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-    if (cat !== '日本史') return;
-    if (selectedCats.includes('日本史')) setSelectedEras([]);
+    setSelectedCats([cat]);
+    if (cat !== '日本史') setSelectedEras([]);
   }
 
   function toggleAllCats() {
-    setSelectedCats(allCats ? [] : [...CATEGORIES]);
+    setSelectedCats([...CATEGORIES]);
     setSelectedEras([]);
   }
 

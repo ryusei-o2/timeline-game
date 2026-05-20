@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-amber-50">
       <div className="text-center max-w-md">
         <div className="text-6xl mb-4">🕰️</div>
-        <h1 className="text-5xl font-bold text-amber-800 mb-3">タイムライン</h1>
+        <h1 className="text-5xl font-bold text-amber-800 mb-3">ヒストリカ</h1>
         <p className="text-stone-600 mb-10 text-lg">
           歴史的な出来事を正しい順番に並べよう
         </p>
