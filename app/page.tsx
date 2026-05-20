@@ -28,6 +28,13 @@ export default function Home() {
         <p className="mt-10 text-stone-400 text-sm">
           2〜4人でプレイ。歴史カードを正しい位置に置いてポイントを獲得しよう。
         </p>
+        <p className="mt-4 text-stone-400 text-xs">
+          追加してほしい出来事や、バグがあれば{' '}
+          <a href="mailto:ss15n01ryusei63@outlook.com" className="underline hover:text-stone-600">
+            ss15n01ryusei63@outlook.com
+          </a>{' '}
+          まで連絡してください。
+        </p>
       </div>
     </main>
   );
