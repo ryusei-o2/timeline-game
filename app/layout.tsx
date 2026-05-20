@@ -11,6 +11,9 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "タイムライン",
   description: "歴史的な出来事を時系列に並べるカードゲーム",
+  other: {
+    "google-adsense-account": "ca-pub-9657861927625897",
+  },
 };
 
 export default function RootLayout({
@@ -20,16 +23,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${notoSansJP.variable} h-full`}>
-      <head>
+      <body className="min-h-full bg-amber-50 text-stone-800 font-[var(--font-noto)]">
+        {children}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9657861927625897"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-      </head>
-      <body className="min-h-full bg-amber-50 text-stone-800 font-[var(--font-noto)]">
-        {children}
       </body>
     </html>
   );
